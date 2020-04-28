@@ -1,0 +1,23 @@
+
+{{!-- //Article Title Link --}}
+{{#each articles}}
+<div class="card">
+    <div class="card-header">
+
+        <a class="titleLink" href={{link}} target="_blank">{{headline}}</a>
+    </div>
+</div>
+{{!-- //Summary and Save Button --}}
+
+<div class="card-body">
+    <div class="row">
+        <div class="col-8">
+            <p>{{summary}}</p>
+        </div>
+        <div class="col-4 buttonColumn">
+            <button type="button"   class="btn btn-primary saveArticleButton" data-id={{_id}}>Save Article</button>
+        </div>
+    </div>
+</div>
+
+{{/each}}

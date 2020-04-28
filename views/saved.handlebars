@@ -1,0 +1,25 @@
+{{!-- //This is where you can view saved articles, add notes, and delete articles --}}
+
+{{#each savedArticles}}
+
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    <a class="card-title href={{link}} target=" _blank>
+      <h1>{{headline}}</h1>
+    </a>
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <h6>Article Summary</h6>
+      <p class="card-text">{{summary}}</p>
+    </div>
+    <div class="col-4 buttonColumn">
+      <button type="button" class="btn btn-primary articleNotes" data-id={{_id}}>Article Notes</button>
+    </div>
+    <button type="button" class="btn btn-primary deleteArticle">Delete Article</a>
+  </div>
+</div>
+
+
+{{/each}}
