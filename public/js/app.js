@@ -39,8 +39,6 @@ $(document).on("click", ".scrapeArticlesButton", function() {
   }).catch(err => console.log(err));
 })
 
-
-
 //when you click SAVE THIS ARTICLE 
 $(document).on("click", ".saveArticleButton", function () {
   // Save the id from the p tag
@@ -58,7 +56,7 @@ console.log(thisId);
 });
 
 
-// When you click the savenote button
+// When you click the SAVE NOTE BUTTON
 $(document).on("click", "#savenote", function () {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");

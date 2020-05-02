@@ -1,29 +1,46 @@
 {{!-- Navbar --}}
-<div class="nav-bar">
-<button type="button" class="btn btn-primary homeButton">Home</button>
-<button type="button" class="btn btn-primary savedArticles">Saved Articles</button>
-<button type="button" class="btn btn-danger scrapeArticlesButton">Scrape New Articles</button>
-<button type="button" class="btn btn-danger clearArticlesButton">Clear Articles</button>
-</div>
+<div class="nav-bar sticky">
+<ul class="nav justify-content-center">
+  <li class="nav-link">
+    <button type="button" class="btn btn-primary homeButton">Home</button>
+  </li>
+  <li class="nav-link">
+    <button type="button" class="btn btn-primary savedArticles">Saved Articles</button>
+  </li>
+  <li class="nav-link">
+    <button type="button" class="btn btn-primary scrapeArticlesButton">Scrape New Articles</button>
+  </li>
+  <li class="nav-link">
+    <button type="button" class="btn btn-danger clearArticlesButton">Clear Articles</button>
+  </li>
+  </div>
+</ul>
+
 {{!-- Jumbotron --}}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container text-center">
+    <h1 class="display-4">Mongo Scraper</h1>
+    <p class="lead">Buzzfeed Edition!</p>
+  </div>
+</div>
 
 
 {{!-- //Article Title Link --}}
 {{#each articles}}
 <div class="card">
-    <div class="card-header">
-        <a class="titleLink" href={{link}} target="_blank">{{headline}}</a>
+    <div class="card-header p-3 mb-2 bg-dark">
+        <a class="titleLink text-white" href={{link}} target="_blank">{{headline}}</a>
     </div>
 </div>
 
 {{!-- //Summary and Save Button --}}
 
 <div class="card-body">
-    <div class="row">
+    <div class="row font-weight-light ">
         <div class="col-8">
             <p>{{summary}}</p>
         </div>
-        <div class="col-4 buttonColumn">
+        <div class="col buttonColumn">
             <button type="button"   class="btn btn-primary saveArticleButton" data-id={{_id}}>Save Article</button>
         </div>
     </div>
