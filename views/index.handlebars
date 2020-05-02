@@ -1,12 +1,21 @@
+{{!-- Navbar --}}
+<div class="nav-bar">
+<button type="button" class="btn btn-primary homeButton">Home</button>
+<button type="button" class="btn btn-primary savedArticles">Saved Articles</button>
+<button type="button" class="btn btn-danger scrapeArticlesButton">Scrape New Articles</button>
+<button type="button" class="btn btn-danger clearArticlesButton">Clear Articles</button>
+</div>
+{{!-- Jumbotron --}}
+
 
 {{!-- //Article Title Link --}}
 {{#each articles}}
 <div class="card">
     <div class="card-header">
-
         <a class="titleLink" href={{link}} target="_blank">{{headline}}</a>
     </div>
 </div>
+
 {{!-- //Summary and Save Button --}}
 
 <div class="card-body">

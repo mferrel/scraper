@@ -31,7 +31,7 @@ function apiRoutes(app) {
     //DISPLAY ALL SCRAPED ARTICLES ON THE HOME SCREEN
     app.get("/", function (req, res) {
         // Grab every document in the Articles collection
-        db.Article.find({})
+        db.Article.find({}).sort({_id: -1})
             .then(function (dbArticle) {
                 // If we were able to successfully find Articles, send them back to the client
 
@@ -119,7 +119,6 @@ function apiRoutes(app) {
                 result.summary = $(this).children("p").text();
                 //a is the child of h2 is the child of div hence 2 children
                 result.link = $(this).children("h2").children("a").attr("href");
-                // var photo = $(this).children("img").attr("src");
                 console.log(result.headline, result.summary, result.link);
                 // var title = $(this).contents();
                 // console.log(title);

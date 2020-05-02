@@ -30,6 +30,16 @@ $(document).on("click", "p", function () {
     });
 });
 
+//when you click SCRAPE NEW ARTICLES
+$(document).on("click", ".scrapeArticlesButton", function() {
+  $.get("/scrape").then(function(data){
+    location.reload();
+    console.log("scrape success!")
+    //tell javascript to auto reload the page
+  }).catch(err => console.log(err));
+})
+
+
 
 //when you click SAVE THIS ARTICLE 
 $(document).on("click", ".saveArticleButton", function () {
