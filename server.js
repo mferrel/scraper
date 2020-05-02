@@ -2,8 +2,6 @@
 var express = require("express");
 var handlebars = require("express-handlebars");
 var mongoose = require("mongoose");
-var bodyParser = require("body-parser");
-var logger = require("morgan");
 
 //Require all models
 var db = require("./models");
