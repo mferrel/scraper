@@ -1,25 +1,71 @@
 {{!-- //This is where you can view saved articles, add notes, and delete articles --}}
-
-{{#each savedArticles}}
-
-<div class="card" style="width: 18rem;">
-  <div class="card-header">
-    <a class="card-title href={{link}} target=" _blank>
-      <h1>{{headline}}</h1>
-    </a>
+{{!-- Navbar --}}
+<div class="nav-bar sticky">
+<ul class="nav justify-content-center">
+  <li class="nav-link">
+    <button type="button" class="btn btn-primary homeButton">Home</button>
+  </li>
+  <li class="nav-link">
+    <button type="button" class="btn btn-primary savedArticles">Saved Articles</button>
+  </li>
+  <li class="nav-link">
+    <button type="button" class="btn btn-primary scrapeArticlesButton">Scrape New Articles</button>
+  </li>
+  <li class="nav-link">
+    <button type="button" class="btn btn-danger clearArticlesButton">Clear Articles</button>
+  </li>
   </div>
+</ul>
 
-  <div class="card-body">
-    <div class="row">
-      <h6>Article Summary</h6>
-      <p class="card-text">{{summary}}</p>
-    </div>
-    <div class="col-4 buttonColumn">
-      <button type="button" class="btn btn-primary articleNotes" data-id={{_id}}>Article Notes</button>
-    </div>
-    <button type="button" class="btn btn-primary deleteArticle">Delete Article</a>
+{{!-- Jumbotron --}}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container text-center">
+    <h1 class="display-4">Mongo Scraper</h1>
+    <p class="lead">Buzzfeed Edition!</p>
   </div>
 </div>
 
 
+{{#each savedArticles}}
+<div class="card">
+    <div class="card-header p-3 mb-2 bg-dark">
+        <a class="titleLink text-white" href={{link}} target="_blank">{{headline}}</a>
+    </div>
+</div>
+
+{{!-- //Summary and Save Button --}}
+
+<div class="card-body">
+    <div class="row font-weight-light ">
+        <div class="col-8">
+            <p>{{summary}}</p>
+        </div>
+        <div class="col buttonColumn">
+            <button type="button"   class="btn btn-primary addNoteButton" data-toggle="modal" data-target="#saveModal" data-title="{{headline}}" data-id={{_id}}>Add Note</button>
+             <button type="button"   class="btn btn-primary deleteArticle" data-id={{_id}}>Delete Article</button>
+        </div>
+    </div>
+</div>
+
 {{/each}}
+{{!-- THIS IS THE ADD NOTE MODAL --}}
+<div id="saveModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="articleId">
+        <textarea id="userNote" class="form-control"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary saveNote">Save Note</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

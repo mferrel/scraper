@@ -1,37 +1,14 @@
 var cheerio = require("cheerio");
 var axios = require("axios");
-var mongoose = require("mongoose");
 var db = require("../models");
 
 function apiRoutes(app) {
-    //THIS DISPLAYS SAVED ARTICLES
-    //any displaying web pages is ALL get requests
-    app.get('/saved', function (req, res) {
-        db.Article.find({
-            saved: true
-        }).then(dbArticle => {
 
-            var newArticles = []
-
-            for (let index = 0; index < dbArticle.length; index++) {
-                newArticles.push({
-                    headline: dbArticle[index].headline,
-                    summary: dbArticle[index].summary,
-                    link: dbArticle[index].link,
-                    _id: dbArticle[index]._id
-                })
-
-            }
-
-            res.render("saved", {
-                savedArticles: newArticles
-            })
-        })
-    })
     //DISPLAY ALL SCRAPED ARTICLES ON THE HOME SCREEN
     app.get("/", function (req, res) {
+
         // Grab every document in the Articles collection
-        db.Article.find({}).sort({_id: -1})
+        db.Article.find({}).sort({date: -1})
             .then(function (dbArticle) {
                 // If we were able to successfully find Articles, send them back to the client
 
@@ -77,6 +54,32 @@ function apiRoutes(app) {
             res.json(dbArticle);
         })
     })
+
+    //THIS DISPLAYS SAVED ARTICLES
+    //any displaying web pages is ALL get requests
+    app.get('/saved', function (req, res) {
+        db.Article.find({
+            saved: true
+        }).then(dbArticle => {
+
+            var newArticles = []
+
+            for (let index = 0; index < dbArticle.length; index++) {
+                newArticles.push({
+                    headline: dbArticle[index].headline,
+                    summary: dbArticle[index].summary,
+                    link: dbArticle[index].link,
+                    _id: dbArticle[index]._id
+                })
+
+            }
+
+            res.render("saved", {
+                savedArticles: newArticles
+            })
+        })
+    })
+
     //CREATE A NOTE
     app.post("/api/create/notes/:id", function (req, res) {
         console.log(req.body);
@@ -105,10 +108,25 @@ function apiRoutes(app) {
 
     });
 
+    //this is your delete route
+    app.delete("/api/clearArticles", (req, res) => {
+        db.Article.remove({}).then(results => {
+            console.log("articles removed");
+            //if you don't respond back the client is just waiting there forever
+            res.json(results);
+        });
+    });
+
     //get is for read, delete is just delete
     app.get("/scrape", (req, res) => {
         console.log("static text");
+
         axios.get("https://www.buzzfeed.com").then(function (response) {
+
+        db.Article.remove({}).then(results => {
+            console.log("success!!")
+        })
+
             //cheerio will load the get request, data will returns the article web page
             var $ = cheerio.load(response.data);
             $("div.xs-px05").each(function (i, element) {

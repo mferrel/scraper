@@ -1,13 +1,6 @@
 .jumbotron {
     margin: 0px;
-    background: url("/public/images/buzz.jpg") no-repeat center center;
+    background: url("/images/buzz.jpg") no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
-}
-
-.sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 2;
 }
