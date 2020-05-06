@@ -9,7 +9,7 @@ Deployed Site: https://floating-plains-57582.herokuapp.com/
 This app scrapes current articles from the Buzzfeed homepage and returns a list of their headlines and subheaders. Users can:
 * click the "Scrape New Articles" button to return fresh headlines on the homepage
 
-* click the "Clear Articles" to clear the scrape
+* click the "Clear Articles" button to clear the scrape
 
  * click the "Save Article" button accompanying each link to save an article to the "Saved Articles" page
 
