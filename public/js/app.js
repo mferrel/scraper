@@ -77,46 +77,54 @@ $(document).on("click", ".addNoteButton", function(){
 
 })
 
-//when you click SAVE NOTE
-$(document).on("click", ".saveNote", function(){
-  //all text boxes are .val which refers to what is put INTO the text box
-  console.log($("#articleId").html())
-  var userNote =
-  {
-    title: $(".modal-title").text(),
-    body: $("#userNote").val()
-  }
-  // MAKE A POST REQUEST THEN AN AJAX CALL 
-  console.log("YOU HAVE THE RIGHT DATA", userNote);
+// //when you click SAVE NOTE
+// $(document).on("click", ".saveNote", function(){
+//   //all text boxes are .val which refers to what is put INTO the text box
+//   console.log($("#articleId").html())
+//   var userNote =
+//   {
+//     title: $(".modal-title").text(),
+//     body: $("#userNote").val()
+//   }
 
-})
+
+//   // MAKE A POST REQUEST THEN AN AJAX CALL 
+//   console.log("YOU HAVE THE RIGHT DATA", userNote);
+
+// })
 
 //this sends the saved articles to saved.handlebars
 $(document).on("click", ".savedArticles", function(){
   location.href="/saved"
 })
+
+
+
 // When you click the SAVE NOTE BUTTON
-$(document).on("click", "#savenote", function () {
+$(document).on("click", "#saveNote", function () {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
-
+  console.log( "THIS ACTUALLY WORKED")
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: "POST",
     url: "/articles/" + thisId,
     data: {
       // Value taken from title input
-      title: $("#titleinput").val(),
+      // title: $("#titleinput").val(),
+      title: $(".modal-title").val(),
       // Value taken from note textarea
-      body: $("#bodyinput").val()
+      // body: $("#bodyinput").val()
+      body: $("#userNote").val()
     }
   })
     // With that done
     .then(function (data) {
       // Log the response
-      console.log(data);
+      console.log("THIS WORKED", data);
       // Empty the notes section
       $("#notes").empty();
+      location.reload();
     });
 
   // Also, remove the values entered in the input and textarea for note entry
