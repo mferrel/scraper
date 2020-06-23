@@ -80,7 +80,7 @@ function apiRoutes(app) {
         })
     })
 
-    //CREATE A NOTE
+    // // CREATE A NOTE
     // app.post("/api/create/notes/:id", function (req, res) {
     //     console.log(req.body);
 
@@ -100,8 +100,8 @@ function apiRoutes(app) {
 //TRYING TO SAVE A NOTE TO ARTICLE
     app.post("/api/articles/:id", function (req, res) {
         console.log(req.body);
-
-        db.Note.create(req.body)
+        console.log("this is req.params", req.params);
+        db.Article.note.create(req.body)
             .then(function (dbNote) {
                 return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
             })
