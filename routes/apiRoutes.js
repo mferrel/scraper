@@ -81,39 +81,41 @@ function apiRoutes(app) {
     })
 
     // // CREATE A NOTE
-    // app.post("/api/create/notes/:id", function (req, res) {
-    //     console.log(req.body);
-
-    //     db.Note.create(req.body)
-    //         .then(function (dbNote) {
-    //             return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
-    //         })
-    //         .then(function (result) {
-    //             res.json(result);
-    //         })
-    //         .catch(function (err) {
-    //             res.json(err);
-    //         });
-
-    // });
-
-//TRYING TO SAVE A NOTE TO ARTICLE
-    app.post("/api/articles/:id", function (req, res) {
+    //TIM SHOULD I USE THIS ONE?
+    app.post("/api/create/notes/:id", function (req, res) {
         console.log(req.body);
-        console.log("this is req.params", req.params);
-        db.Article.note.create(req.body)
+
+        db.Note.create(req.body)
             .then(function (dbNote) {
                 return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
             })
             .then(function (result) {
-                res.json(result)
-                res.redirect("/savedarticles")
+                res.json(result);
             })
             .catch(function (err) {
                 res.json(err);
             });
 
     });
+
+//TRYING TO SAVE A NOTE TO ARTICLE
+//OR TIM SHOULD I USE THIS ONE?
+    // app.post("/api/articles/:id", function (req, res) {
+    //     console.log(req.body);
+    //     console.log("this is req.params", req.params);
+    //     db.Article.note.create(req.body)
+    //         .then(function (dbNote) {
+    //             return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+    //         })
+    //         .then(function (result) {
+    //             res.json(result)
+    //             res.redirect("/savedarticles")
+    //         })
+    //         .catch(function (err) {
+    //             res.json(err);
+    //         });
+
+    // });
     // DELETE A NOTE
     app.delete("/api/delete/notes/:id", function (req, res) {
 
@@ -126,7 +128,7 @@ function apiRoutes(app) {
 
     });
 
-    //this is your delete route
+    //this is your clear all scraped articles from homepage route
     app.delete("/api/clearArticles", (req, res) => {
         db.Article.remove({}).then(results => {
             console.log("articles removed");
@@ -135,7 +137,7 @@ function apiRoutes(app) {
         });
     });
 
-    //get is for read, delete is just delete
+    //THIS SCRAPES ARTICLES REALLY ON JULY 29
     app.get("/scrape", (req, res) => {
         console.log("static text");
 
